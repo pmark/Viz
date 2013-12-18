@@ -43,7 +43,7 @@ function newMaxDotRadius() {
 }
 
 function newSpread() {
-  return Math.random() * innerWidth * 0.5;
+  return 1; //Math.random() * innerWidth * 1.5;
 }
 
 var color = d3.scale.category20();
@@ -59,9 +59,9 @@ var radius = innerHeight * 0.3;
 var endPointRadius = innerHeight / 10.0;
 var startPoint = [0, innerHeight/2];
 var endPoint = [0, innerHeight/2];
-var xDeltaDelta = innerWidth * 0.0125;
+var xDeltaDelta = innerWidth / 10;
 var xDeltaDirection = 1;
-var xDeltaMin = innerWidth * 0.05;
+var xDeltaMin = innerWidth * 0.1;
 var xDelta = xDeltaMin;
 var xDirection = 1.0;
 var maxDotRadius = newMaxDotRadius();
@@ -77,10 +77,10 @@ setInterval(function() {
   spread = newSpread();
 
   xDelta += xDeltaDelta * xDeltaDirection;
-  if (xDelta >= innerWidth * 1 || xDelta <= xDeltaMin) {
+  if (xDelta >= innerWidth * 2 || xDelta <= xDeltaMin) {
     xDeltaDirection *= -1;
   }
-}, 400);
+}, 1000);
 
 function updateAngle() {
 
@@ -134,7 +134,7 @@ function particle() {
       .style("fill", d3.hsl((i = (i + 1) % 360), 1, .5))
       .style("stroke", (Math.random()*10 <5 ? "black" : "white"))
       .style("stroke-opacity", 1)
-      // .style("opacity", 0.66)
+      .style("opacity", 0.66)
     .transition()
       .attr("cx", endPoint[0])
       .attr("cy", endPoint[1])
@@ -142,7 +142,7 @@ function particle() {
       .ease(Math.sqrt)
       .attr("r", 1)
       .style("stroke-width", maxDotRadius/2)
-      // .style("opacity", 1.0)
+      .style("opacity", 1.0)
       .style("stroke-opacity", 1e-6)
       .remove();
 }
