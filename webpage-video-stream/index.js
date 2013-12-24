@@ -18,5 +18,5 @@ page.open(url, function(){
 
         frames--;
 
-    }, 100);
+    }, 33);
 });
